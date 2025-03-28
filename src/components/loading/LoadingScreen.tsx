@@ -12,7 +12,7 @@ const LoadingScreen = ({ progress }: { progress: number }) => {
       transition={{ duration: 0.8 }}
     >
       <motion.span
-        className="text-orange-600 font-bold text-xl"
+        className="text-orange-600 font-bold text-[50px]"
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: "easeInOut" }}
@@ -20,7 +20,7 @@ const LoadingScreen = ({ progress }: { progress: number }) => {
         MEGA.news
       </motion.span>
 
-      <div className="w-56 h-1 bg-gray-200 mt-3 relative overflow-hidden rounded-lg">
+      <div className="w-56 h-[5px] mb-[150px] bg-gray-200 mt-3 relative overflow-hidden rounded-lg">
         <motion.div
           className="h-full bg-orange-600 absolute left-0 top-0"
           style={{ width: `${progress}%` }}
@@ -29,13 +29,13 @@ const LoadingScreen = ({ progress }: { progress: number }) => {
         />
       </div>
 
-      <motion.span
-        className="text-gray-600 text-sm mt-2"
+      {/* <motion.span
+        className="text-gray-600 text-sm mt-2 mb-[150px]"
         animate={{ opacity: [0, 1], y: [5, 0] }}
         transition={{ duration: 0.5 }}
       >
         {Math.floor(progress)}%
-      </motion.span>
+      </motion.span> */}
     </motion.div>
   );
 };
