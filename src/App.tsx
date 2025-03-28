@@ -17,12 +17,12 @@ const App = () => {
       setLoadingProgress((prev) => {
         if (prev >= 100) {
           clearInterval(interval);
-          setTimeout(() => setIsLoading(false), 500); // Small delay for smooth transition
+          setTimeout(() => setIsLoading(false), 500);
           return 100;
         }
-        return prev + Math.random() * 20; // Simulate network speed
+        return prev + Math.random() * 20;
       });
-    }, 500); // Adjust frequency based on your preference
+    }, 500);
 
     return () => clearInterval(interval);
   }, []);
@@ -46,8 +46,8 @@ const App = () => {
               <Route path="/" element={<HomeLayout />}>
                 <Route index={true} element={<Home />} />
                 <Route path="/about-us" element={<AboutUs />} />
+                <Route path="*" element={<NotFound />} />
               </Route>
-              <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
         )}
