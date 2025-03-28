@@ -1,0 +1,57 @@
+.footer {
+  position: relative;
+  background: transparent;
+  padding: 40px 0; /* Space above and below the content */
+}
+.footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: #f5f5f5;
+  border-top-right-radius: 125px;
+  border-bottom-right-radius: 125px;
+  z-index: -1;
+}
+
+.footer-content {
+  position: relative;
+  z-index: 1;
+}
+
+.footer-bar {
+  width: 45%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 17px 20px;
+  margin-right: 40px;
+  background: #e8e8e8;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+  margin-top: 31px;
+  position: relative;
+}
+
+.footer-bar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -11000px;
+  width: 11100px;
+  height: 100%;
+  background: #e8e8e8;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+  z-index: -1;
+}
+
+.istagram {
+  background: linear-gradient(262.85deg, #f45c9f 5.57%, #ff7563 73.65%);
+}
+
+.twitter {
+  background: linear-gradient(227.96deg, #2ca5e0 11.38%, #67c9f5 84.07%);
+}
