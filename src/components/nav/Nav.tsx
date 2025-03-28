@@ -22,7 +22,7 @@ const Nav = () => {
                 <Link to="/contact" className="capitalize">
                   contact us
                 </Link>
-                <Link to="/about" className="capitalize">
+                <Link to="/about-us" className="capitalize">
                   about us
                 </Link>
               </div>
