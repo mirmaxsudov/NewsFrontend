@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import "./Footer.css";
-import FollowOnInstagram from "./FollowOnInstagram";
 import { memo } from "react";
 import FooterCommends from "./FooterCommends";
+import FollowOnInstagram from "../aboutUs/FollowOnInstagram";
 
 const Footer = memo(() => {
   return (
-    <footer className="footer mt-[100px]">
+    <footer className="footer mt-[50px]">
       <div className="container max-w-container mx-auto">
         <div className="footer-content grid grid-cols-2 gap-[64px]">
           <div>
