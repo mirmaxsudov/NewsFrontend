@@ -50,14 +50,16 @@ const MegaNewsTeam = () => {
 
   return (
     <>
-      <div className="mega-news-team">
-        <h3 className="red-line text-[20px] font-medium text-[#3E3232] capitalize">
-          Mega News team
-        </h3>
-        <div className="grid grid-cols-6 grid-rows-1 gap-[24px]">
-          {TEAM.map((team) => (
-            <MegaNewsTeamCard team={team} />
-          ))}
+      <div className="container max-w-container mx-auto">
+        <div className="mega-news-team my-[50px]">
+          <h3 className="red-line text-[20px] font-medium text-[#3E3232] capitalize mb-[30px]">
+            Mega News team
+          </h3>
+          <div className="grid grid-cols-6 grid-rows-1 gap-[24px]">
+            {TEAM.map((team) => (
+              <MegaNewsTeamCard team={team} />
+            ))}
+          </div>
         </div>
       </div>
     </>
