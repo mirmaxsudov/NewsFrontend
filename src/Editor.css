@@ -1,0 +1,115 @@
+.editor-container {
+    width: 100%;
+    background: #FFFFFF;
+    box-shadow: 0 0 32px 0 #00000012;
+    border: 1px solid #e1e1e1;
+    border-radius: 8px;
+    padding: 16px;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.editor-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+.toolbar-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #F5F5F5;
+    border: 1px solid #eaeaea;
+    border-radius: 12px;
+    padding: 10px 12px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #333;
+    transition: background 0.2s;
+}
+
+.toolbar-btn:hover {
+    background: #eaeaea;
+}
+
+.toolbar-btn svg {
+    display: block;
+    width: 18px;
+    height: 18px;
+}
+
+.color-picker-wrapper {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+
+.color-input {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    border: none;
+    padding: 0;
+    width: 140px;
+    height: 140px;
+    cursor: pointer;
+}
+
+.align-select-wrapper {
+    position: relative;
+}
+
+.align-select {
+    background: #f6f6f6;
+    border: 1px solid #eaeaea;
+    border-radius: 12px;
+    padding: 10px 12px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.quill-editor .ql-container {
+    min-height: 200px;
+    border: 1px solid #eaeaea;
+    border-radius: 6px;
+    background-color: #F5F5F5;
+}
+
+.quill-editor .ql-editor {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #333;
+    padding: 12px;
+}
+
+.quill-editor .ql-editor.ql-blank::before {
+    color: #aaa;
+    font-style: italic;
+}
+
+.header-select-wrapper {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+
+.header-select {
+    background: #f6f6f6;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 10px 12px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.header-select-wrapper svg {
+    position: absolute;
+    left: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
