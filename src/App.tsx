@@ -5,7 +5,7 @@ import {lazy, Suspense, useState, useEffect} from "react";
 import LoadingScreen from "./components/loading/LoadingScreen";
 import {AnimatePresence, motion} from "framer-motion";
 import Contact from "./components/contact/Contact";
-import Editor from "./Editor.tsx";
+import Profile from "./components/profile/Profile.tsx";
 
 const Home = lazy(() => import("./pages/Home"));
 const AboutUs = lazy(() => import("./components/aboutUs/AboutUs"));
@@ -49,7 +49,7 @@ const App = () => {
                             <Route index={true} element={<Home/>}/>
                             <Route path="/about-us" element={<AboutUs/>}/>
                             <Route path="/contact" element={<Contact/>}/>
-                            <Route path={"/editor"} element={<Editor/>}/>
+                            <Route path={"/profile"} element={<Profile/>}/>
                             <Route path="*" element={<NotFound/>}/>
                         </Route>
                     </Routes>
