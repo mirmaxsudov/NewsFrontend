@@ -28,7 +28,7 @@ type AttachmentResponse = {
     url: string;
 }
 
-const Profile = () => {
+const ProfileEdit = () => {
     const [firstName, setFirstName] = useState<string>("");
     const [lastName, setLastName] = useState<string>("");
     const [username, setUsername] = useState<string>("");
@@ -93,4 +93,4 @@ const Profile = () => {
     </>)
 }
 
-export default Profile;
+export default ProfileEdit;

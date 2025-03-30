@@ -5,11 +5,12 @@ type NewsButtonProps = {
     bgColor: string;
     textColor: string;
     onClick: () => void;
-    isTargetBlank?: boolean;
-    isDisabled?: boolean;
-    isLink?: boolean;
-    link?: string;
+    isTargetBlank: boolean;
+    isDisabled: boolean;
+    isLink: boolean;
+    link: string;
     children: JSX.Element;
+    className: string
 }
 
 const NewsButton = ({
@@ -20,7 +21,8 @@ const NewsButton = ({
                         isTargetBlank = false,
                         isDisabled = false,
                         isLink = false,
-                        link
+                        link,
+                        className
                     }: Partial<NewsButtonProps>) => {
 
     const baseStyles = "flex gap-2 items-center px-[15px] py-[10px] rounded-[12px]";
@@ -28,7 +30,7 @@ const NewsButton = ({
     if (isLink) {
         return (
             <Link onClick={onClick} target={isTargetBlank ? "_blank" : "_self"}
-                  className={`${bgColor} ${textColor} ${baseStyles}`}
+                  className={`${bgColor} ${textColor} ${baseStyles} ${className}`}
                   to={link ? link : "/"}>
                 {children}
             </Link>
@@ -37,7 +39,7 @@ const NewsButton = ({
 
     return (
         <button onClick={onClick} disabled={isDisabled}
-                className={`${bgColor} ${textColor} ${baseStyles}`}>
+                className={`${bgColor} ${textColor} ${baseStyles} ${className}`}>
             {children}
         </button>
     )

@@ -1,0 +1,34 @@
+.profile-link {
+    position: relative;
+}
+
+.profile-link.active:before {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 10px;
+    height: 4px;
+    border-radius: 100px;
+    background-color: #F81539;
+}
+
+.profile-post-layout__link {
+    position: relative;
+}
+
+.profile-post-layout__link.active {
+    background-color: #F5F5F5;
+}
+
+.profile-post-layout__link.active:before {
+    content: "";
+    position: absolute;
+    bottom: 50%;
+    transform: translateY(50%);
+    left: 10px;
+    width: 4px;
+    height: 4px;
+    border-radius: 100%;
+    background-color: #F81539;
+}
