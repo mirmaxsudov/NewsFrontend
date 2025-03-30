@@ -1,11 +1,17 @@
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import NotFound from "./errors/NotFound";
 import HomeLayout from "./layouts/HomeLayout";
 import {lazy, Suspense, useState, useEffect} from "react";
 import LoadingScreen from "./components/loading/LoadingScreen";
 import {AnimatePresence, motion} from "framer-motion";
 import Contact from "./components/contact/Contact";
-import Profile from "./components/profile/Profile.tsx";
+import ProfileEdit from "./components/profile/ProfileEdit.tsx";
+import ProfileLayout from "./layouts/profile/ProfileLayout.tsx";
+import ProfileMarked from "./components/profile/ProfileMarked.tsx";
+import ProfilePostLayout from "./layouts/profile/ProfilePostLayout.tsx";
+import ProfilePosts from "./components/profile/ProfilePosts.tsx";
+import ProfileSendPost from "./components/profile/ProfileSendPost.tsx";
+import ProfileSendVideo from "./components/profile/ProfileSendVideo.tsx";
 
 const Home = lazy(() => import("./pages/Home"));
 const AboutUs = lazy(() => import("./components/aboutUs/AboutUs"));
@@ -49,7 +55,17 @@ const App = () => {
                             <Route index={true} element={<Home/>}/>
                             <Route path="/about-us" element={<AboutUs/>}/>
                             <Route path="/contact" element={<Contact/>}/>
-                            <Route path={"/profile"} element={<Profile/>}/>
+                            <Route path={"/profile"} element={<ProfileLayout/>}>
+                                <Route index={true} element={<Navigate to={"marked"} replace={true}/>}/>
+                                <Route path={"marked"} element={<ProfileMarked/>}/>
+                                <Route path={"send"} element={<ProfilePostLayout/>}>
+                                    <Route index={true} element={<Navigate to={"post"} replace={true}/>}/>
+                                    <Route path={"post"} element={<ProfileSendPost/>}/>
+                                    <Route path={"video"} element={<ProfileSendVideo/>}/>
+                                </Route>
+                                <Route path={"posts"} element={<ProfilePosts/>}/>
+                            </Route>
+                            <Route path={"/profile-edit"} element={<ProfileEdit/>}/>
                             <Route path="*" element={<NotFound/>}/>
                         </Route>
                     </Routes>
