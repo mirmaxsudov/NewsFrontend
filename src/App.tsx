@@ -12,6 +12,10 @@ import ProfilePostLayout from "./layouts/profile/ProfilePostLayout.tsx";
 import ProfilePosts from "./components/profile/ProfilePosts.tsx";
 import ProfileSendPost from "./components/profile/ProfileSendPost.tsx";
 import ProfileSendVideo from "./components/profile/ProfileSendVideo.tsx";
+import AuthLayout from "./layouts/auth/AuthLayout.tsx";
+import Login from "./pages/auth/Login.tsx";
+import Register from "./pages/auth/Register.tsx";
+import ForgotPassword from "./pages/auth/ForgotPassword.tsx";
 
 const Home = lazy(() => import("./pages/Home"));
 const AboutUs = lazy(() => import("./components/aboutUs/AboutUs"));
@@ -56,17 +60,30 @@ const App = () => {
                             <Route path="/about-us" element={<AboutUs/>}/>
                             <Route path="/contact" element={<Contact/>}/>
                             <Route path={"/profile"} element={<ProfileLayout/>}>
-                                <Route index={true} element={<Navigate to={"marked"} replace={true}/>}/>
+                                <Route
+                                    index={true}
+                                    element={<Navigate to={"marked"} replace={true}/>}
+                                />
                                 <Route path={"marked"} element={<ProfileMarked/>}/>
                                 <Route path={"send"} element={<ProfilePostLayout/>}>
-                                    <Route index={true} element={<Navigate to={"post"} replace={true}/>}/>
+                                    <Route
+                                        index={true}
+                                        element={<Navigate to={"post"} replace={true}/>}
+                                    />
                                     <Route path={"post"} element={<ProfileSendPost/>}/>
                                     <Route path={"video"} element={<ProfileSendVideo/>}/>
                                 </Route>
                                 <Route path={"posts"} element={<ProfilePosts/>}/>
                             </Route>
                             <Route path={"/profile-edit"} element={<ProfileEdit/>}/>
+                            <Route path="/404" element={<NotFound/>}/>
                             <Route path="*" element={<NotFound/>}/>
+                        </Route>
+                        <Route path={"/auth"} element={<AuthLayout/>}>
+                            <Route index={true} element={<Navigate to={"login"} replace={true}/>}/>
+                            <Route path={"login"} element={<Login/>}/>
+                            <Route path={"register"} element={<Register/>}/>
+                            <Route path={"forgot"} element={<ForgotPassword/>}/>
                         </Route>
                     </Routes>
                 </Suspense>
