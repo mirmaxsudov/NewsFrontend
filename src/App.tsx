@@ -9,7 +9,7 @@ import ProfileEdit from "./components/profile/ProfileEdit.tsx";
 import ProfileLayout from "./layouts/profile/ProfileLayout.tsx";
 import ProfileMarked from "./components/profile/ProfileMarked.tsx";
 import ProfilePostLayout from "./layouts/profile/ProfilePostLayout.tsx";
-import ProfilePosts from "./components/profile/ProfilePosts.tsx";
+import ProfilePosts from "./components/profile/profilePosts/ProfilePosts.tsx";
 import ProfileSendPost from "./components/profile/ProfileSendPost.tsx";
 import ProfileSendVideo from "./components/profile/ProfileSendVideo.tsx";
 import AuthLayout from "./layouts/auth/AuthLayout.tsx";
