@@ -1,11 +1,12 @@
 import GenerateBreadCrumps from "../../helpers/GenerateBreadCrumps.tsx";
-import {useRef, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import Editor, {EditorRef} from "../../Editor.tsx";
 import NewsInput from "../input/NewsInput.tsx";
 import {InputEnum} from "../../enums/inputEnum.ts";
 import FileUpload from "../input/FileUpload.tsx";
 import {v4 as uuid} from "uuid";
 import NewsButton from "../btns/NewsButton.tsx";
+import {fetchUserDetails} from "../../api/requests/user/user.api.ts";
 
 type Breadcrumb = {
     value: string;
@@ -28,6 +29,17 @@ type AttachmentResponse = {
     url: string;
 }
 
+type User = {
+    id: number;
+    username: string;
+    email: string;
+    firstname: string;
+    lastname: string;
+    explanation: string;
+    banner: AttachmentResponse;
+    profileImage: AttachmentResponse;
+}
+
 const ProfileEdit = () => {
     const [firstName, setFirstName] = useState<string>("");
     const [lastName, setLastName] = useState<string>("");
@@ -39,6 +51,27 @@ const ProfileEdit = () => {
     const [profileImage, setProfileImage] = useState();
     const [editorData, setEditorData] = useState<string>("");
     const editorRef = useRef<EditorRef>(null);
+    const [user, setUser] = useState<User>({} as User);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetchUserDetails();
+                const data = response.data;
+
+                console.log(response)
+                console.log(data)
+
+                setUser(data)
+                setEditorData(user.explanation)
+
+            } catch (error) {
+                console.log(error)
+            }
+        }
+
+        fetchData();
+    }, [])
 
     return (<>
         <section className={"profile__section mb-[50px] mt-[25px]"}>
@@ -47,13 +80,13 @@ const ProfileEdit = () => {
 
                 {/*  Main content  */}
                 <div className={"grid grid-cols-3 grid-rows-2 gap-[24px] my-[24px]"}>
-                    <NewsInput label={"First name"} type={InputEnum.TEXT} onChange={setFirstName}/>
-                    <NewsInput label={"Last name"} type={InputEnum.TEXT} onChange={setLastName}/>
-                    <NewsInput label={"Username"} type={InputEnum.TEXT} onChange={setUsername}/>
+                    <NewsInput val={user.firstname} label={"First name"} type={InputEnum.TEXT} onChange={setFirstName}/>
+                    <NewsInput val={user.lastname} label={"Last name"} type={InputEnum.TEXT} onChange={setLastName}/>
+                    <NewsInput val={user.username} label={"Username"} type={InputEnum.TEXT} onChange={setUsername}/>
 
                     <NewsInput label={"Old password"} type={InputEnum.PASSWORD} onChange={setOldPassword}/>
                     <NewsInput label={"password"} type={InputEnum.PASSWORD} onChange={setPassword}/>
-                    <NewsInput label={"Email"} type={InputEnum.EMAIL} onChange={setEmail}/>
+                    <NewsInput val={user.email} label={"Email"} type={InputEnum.EMAIL} onChange={setEmail}/>
                 </div>
                 <div className={"w-full my-[24px]"}>
                     <span className={"text-[#3E3232] mb-[5px] text-[16px] inline-block capitalize font-medium"}>
