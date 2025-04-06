@@ -51,9 +51,8 @@ const Calendar = () => {
     ];
 
     return (
-        <div className="bg-[#FFFFFF] p-4 rounded shadow w-fit">
+        <div className="bg-[#FFFFFF] p-4 w-[360px] rounded-[12px] shadow">
             <h3 className="capitalize text-lg font-semibold mb-2">Jan 2022</h3>
-
             <div className="grid grid-cols-7 gap-1 text-center mb-2">
                 {["su", "mo", "tu", "we", "th", "fr", "sa"].map((day) => (
                     <div className="text-[#3E323280] capitalize text-[16px] font-medium" key={day}>
