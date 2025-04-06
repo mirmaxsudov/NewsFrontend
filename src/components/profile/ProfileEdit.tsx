@@ -71,7 +71,15 @@ const ProfileEdit = () => {
         }
 
         fetchData();
-    }, [])
+    }, []);
+
+    const handleSubmit = async () => {
+        // ToDo: Add validation
+        // ToDo: Add request
+        // ToDo: Add error handling
+
+        console.log("Submit")
+    }
 
     return (<>
         <section className={"profile__section mb-[50px] mt-[25px]"}>
