@@ -8,6 +8,8 @@ import React, {
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import "./Editor.css";
+import {uploadFile} from "../../api/requests/file/file.api.ts";
+import {GET_IMAGE_URL} from "../../constants/url.ts";
 
 export interface EditorProps {
     value: string;
@@ -34,7 +36,6 @@ const Editor = forwardRef<EditorRef, EditorProps>(
             },
         }));
 
-        // ---------- Handler: Image Upload ----------
         const handleImage = () => {
             const input = document.createElement("input");
             input.type = "file";
@@ -45,14 +46,15 @@ const Editor = forwardRef<EditorRef, EditorProps>(
                 if (!input.files || input.files.length === 0) return;
                 const file = input.files[0];
 
-                const uploadedUrl = await fakeUploadToServer(file);
+                const uploadedUrl = await uploadToServer(file);
+
+                console.log(uploadedUrl)
 
                 const editor = quillRef.current?.getEditor();
                 if (!editor) return;
                 const range = editor.getSelection(true);
-                if (range) {
+                if (range)
                     editor.insertEmbed(range.index, "image", uploadedUrl, "user");
-                }
             };
         };
 
@@ -139,20 +141,13 @@ const Editor = forwardRef<EditorRef, EditorProps>(
             }
         };
 
-        // ---------- Fake Upload Function (Simulated) ----------
-        const fakeUploadToServer = async (file: File): Promise<string> => {
-            return new Promise((resolve) => {
-                setTimeout(() => {
-                    resolve(URL.createObjectURL(file));
-                }, 1000);
-            });
+        const uploadToServer = async (file: File): Promise<string> => {
+            return GET_IMAGE_URL + await uploadFile(file);
         };
 
         return (
             <div className={`editor-container ${className}`}>
-                {/* Custom Toolbar */}
                 <div className="editor-toolbar">
-                    {/* Image Button */}
                     <button className="toolbar-btn" onClick={handleImage}>
                         <svg
                             width="15"

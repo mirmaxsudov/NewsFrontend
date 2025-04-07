@@ -3,20 +3,24 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer utilities {
-  .red-line {
-    @apply relative;
-  }
+* {
+    transition: all 0.5s ease-in-out;
+}
 
-  .red-line::after {
-    content: "";
-    position: absolute;
-    width: 5px;
-    height: 10px;
-    background-color: #f81539;
-    left: -10px;
-    bottom: 45%;
-    border-radius: 100px;
-    transform: translateY(50%);
-  }
+@layer utilities {
+    .red-line {
+        @apply relative;
+    }
+
+    .red-line::after {
+        content: "";
+        position: absolute;
+        width: 5px;
+        height: 10px;
+        background-color: #f81539;
+        left: -10px;
+        bottom: 45%;
+        border-radius: 100px;
+        transform: translateY(50%);
+    }
 }

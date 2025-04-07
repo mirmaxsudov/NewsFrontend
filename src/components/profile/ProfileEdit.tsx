@@ -1,6 +1,6 @@
-import GenerateBreadCrumps from "../../helpers/GenerateBreadCrumps.tsx";
+import GenerateBreadCrumbs from "../../helpers/GenerateBreadCrumbs.tsx";
 import {useEffect, useRef, useState} from "react";
-import Editor, {EditorRef} from "../../Editor.tsx";
+import Editor, {EditorRef} from "../editor/Editor.tsx";
 import NewsInput from "../input/NewsInput.tsx";
 import {InputEnum} from "../../enums/inputEnum.ts";
 import FileUpload from "../input/FileUpload.tsx";
@@ -84,7 +84,7 @@ const ProfileEdit = () => {
     return (<>
         <section className={"profile__section mb-[50px] mt-[25px]"}>
             <div className={"container max-w-container mx-auto"}>
-                <GenerateBreadCrumps values={breadCrumbVales} current={"profile edit"}/>
+                <GenerateBreadCrumbs values={breadCrumbVales} current={"profile edit"}/>
 
                 {/*  Main content  */}
                 <div className={"grid grid-cols-3 grid-rows-2 gap-[24px] my-[24px]"}>

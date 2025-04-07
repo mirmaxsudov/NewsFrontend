@@ -1,4 +1,4 @@
-import GenerateBreadCrumps from "../../helpers/GenerateBreadCrumps";
+import GenerateBreadCrumbs from "../../helpers/GenerateBreadCrumbs.tsx";
 import MegaNewsInformation from "./megaNewsInformation/MegaNewsInformation";
 import MegaNewsTeam from "./megaNewsTeam/MegaNewsTeam";
 import VideoSection from "./VideoSection/VideoSection";
@@ -7,7 +7,7 @@ const AboutUs = () => {
   return (
     <>
       <div className="container max-w-container mx-auto">
-        <GenerateBreadCrumps
+        <GenerateBreadCrumbs
           values={[
             {
               value: "home",
