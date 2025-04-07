@@ -2,13 +2,14 @@ import {useRef} from "react";
 import {InputEnum} from "../../enums/inputEnum";
 
 type NewsInputProps = {
+    className?: string,
     label: string;
     type: InputEnum;
     val?: string;
     onChange: (value: string) => void;
 };
 
-const NewsInput = ({label, type, onChange, val}: NewsInputProps) => {
+const NewsInput = ({className, label, type, onChange, val}: NewsInputProps) => {
     const placeHolder = "";
     const inputRef = useRef<HTMLInputElement>(null);
 
@@ -24,7 +25,7 @@ const NewsInput = ({label, type, onChange, val}: NewsInputProps) => {
         </span>
                 <input
                     defaultValue={val}
-                    className="text-[#3E3232] font-medium focus:outline-none focus:ring-1 focus:ring-[#3E3232] transition-all duration-300 bg-[#F5F5F5] py-[10px] px-[16px] rounded-[12px]"
+                    className={`text-[#3E3232] font-medium focus:outline-none focus:ring-1 focus:ring-[#3E3232] transition-all duration-300 bg-[#F5F5F5] py-[10px] px-[16px] rounded-[12px] ${className} `}
                     placeholder={placeHolder}
                     ref={inputRef}
                     type={type}

@@ -1,8 +1,7 @@
 import React, {useState} from "react";
 
 type FileUploadProps = {
-    // onFileChange: (files: File[]) => void;
-    onFileChange: (files: any) => void;
+    onFileChange: (files: File[]) => void;
     className?: string;
 };
 
