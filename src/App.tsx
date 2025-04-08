@@ -16,6 +16,9 @@ import AuthLayout from "./layouts/auth/AuthLayout.tsx";
 import Login from "./pages/auth/Login.tsx";
 import Register from "./pages/auth/Register.tsx";
 import ForgotPassword from "./pages/auth/ForgotPassword.tsx";
+import ProfileMarkedLayout from "./layouts/profile/ProfileMarkedLayout.tsx";
+import ProfileMarkedSendPosts from "./components/profile/profilePosts/ProfileMarkedSendPosts.tsx";
+import ProfileMarkedSendVideos from "./components/profile/profilePosts/ProfileMarkedSendVideos.tsx";
 
 const Home = lazy(() => import("./pages/Home"));
 const AboutUs = lazy(() => import("./components/aboutUs/AboutUs"));
@@ -64,7 +67,11 @@ const App = () => {
                                     index={true}
                                     element={<Navigate to={"marked"} replace={true}/>}
                                 />
-                                <Route path={"marked"} element={<ProfileMarked/>}/>
+                                <Route path={"marked"} element={<ProfileMarkedLayout/>}>
+                                    <Route index={true} element={<Navigate to={"send-posts"} replace={true}/>}/>
+                                    <Route path={"send-posts"} element={<ProfileMarkedSendPosts/>}/>
+                                    <Route path={"send-videos"} element={<ProfileMarkedSendVideos/>}/>
+                                </Route>
                                 <Route path={"send"} element={<ProfilePostLayout/>}>
                                     <Route
                                         index={true}
