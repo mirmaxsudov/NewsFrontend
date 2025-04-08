@@ -7,4 +7,6 @@ const createNewSendPost = async (request: PostRequest) => {
     await $api.post(`${BASE_POST_URL}`, request);
 }
 
+
+
 export {createNewSendPost}
