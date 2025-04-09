@@ -1,0 +1,12 @@
+.selected {
+    font-weight: bold;
+    background-color: #eee;
+    border-radius: 9999px;
+}
+
+.pagination {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 2rem;
+}
