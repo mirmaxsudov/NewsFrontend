@@ -7,7 +7,6 @@ import {AnimatePresence, motion} from "framer-motion";
 import Contact from "./components/contact/Contact";
 import ProfileEdit from "./components/profile/ProfileEdit.tsx";
 import ProfileLayout from "./layouts/profile/ProfileLayout.tsx";
-import ProfileMarked from "./components/profile/ProfileMarked.tsx";
 import ProfilePostLayout from "./layouts/profile/ProfilePostLayout.tsx";
 import ProfilePosts from "./components/profile/profilePosts/ProfilePosts.tsx";
 import ProfileSendPost from "./components/profile/ProfileSendPost.tsx";
@@ -19,6 +18,7 @@ import ForgotPassword from "./pages/auth/ForgotPassword.tsx";
 import ProfileMarkedLayout from "./layouts/profile/ProfileMarkedLayout.tsx";
 import ProfileMarkedSendPosts from "./components/profile/profilePosts/ProfileMarkedSendPosts.tsx";
 import ProfileMarkedSendVideos from "./components/profile/profilePosts/ProfileMarkedSendVideos.tsx";
+import PostDetail from "./pages/post/PostDetail.tsx";
 
 const Home = lazy(() => import("./pages/Home"));
 const AboutUs = lazy(() => import("./components/aboutUs/AboutUs"));
@@ -62,6 +62,7 @@ const App = () => {
                             <Route index={true} element={<Home/>}/>
                             <Route path="/about-us" element={<AboutUs/>}/>
                             <Route path="/contact" element={<Contact/>}/>
+                            <Route path={"/post/:id"} element={<PostDetail/>}/>
                             <Route path={"/profile"} element={<ProfileLayout/>}>
                                 <Route
                                     index={true}
