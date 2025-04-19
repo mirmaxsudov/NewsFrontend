@@ -1,6 +1,6 @@
 import {Link} from "react-router-dom";
 
-type GenerateBreadCrumbsProps = {
+export type GenerateBreadCrumbsProps = {
     values: {
         value: string;
         link: string;

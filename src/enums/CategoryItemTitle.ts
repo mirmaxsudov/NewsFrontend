@@ -8,4 +8,14 @@ enum CategoryItemTitle {
     ABSTRACT = "#Abstract",
 }
 
+export enum Category {
+    FOOD = "FOOD",
+    ANIMAL = "ANIMAL",
+    CAR = "CAR",
+    SPORT = "SPORT",
+    MUSIC = "MUSIC",
+    TECHNOLOGY = "TECHNOLOGY",
+    ABSTRACT = "ABSTRACT",
+}
+
 export default CategoryItemTitle;
