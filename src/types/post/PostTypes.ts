@@ -1,5 +1,6 @@
 import ImageAttachmentType from "../attachment/AttachmentTypes.ts";
 import UserPreviewType from "../user/UserType.ts";
+import {Category} from "../../enums/CategoryItemTitle.ts";
 
 interface PostRequest {
     title: string,
@@ -23,6 +24,20 @@ export interface SendPostPageResponseOwn {
     totalPages: number;
     content: SendPostPreview[];
     owner: UserPreviewType;
+}
+
+export interface SendPostResponse {
+    id: number;
+    createdAt: string;
+    title: string;
+    views: number;
+    postCounts: number;
+    postBody: string;
+    category: Category;
+    commentCounts: number;
+    tags: string[],
+    owner: UserPreviewType;
+    image: ImageAttachmentType;
 }
 
 export interface PostItemProps {
