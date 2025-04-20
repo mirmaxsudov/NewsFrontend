@@ -23,9 +23,9 @@ const Login = () => {
                 const {token, user} = data.data;
                 dispatch(setValues({token: token, user: user}));
                 toast("You have successfully logged in", {type: "success"});
-                navigate("/profile");
             }
 
+            window.location.href = "/profile-edit";
         } catch (error) {
             if (error)
                 toast(error?.response?.data?.message);
