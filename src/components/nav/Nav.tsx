@@ -3,6 +3,8 @@ import CategoryDropDown from "./CategoryDropDown";
 import NavSearchInput from "./NavSearchInput";
 import ProfileDropDown from "./ProfileDropDown";
 import PageDropDown from "./PageDropDown.tsx";
+import {useSelector} from "react-redux";
+import {AuthStateType} from "../../store/auth/authSlice.ts";
 
 const Nav = () => {
     return (

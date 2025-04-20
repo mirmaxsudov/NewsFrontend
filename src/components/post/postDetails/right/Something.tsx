@@ -13,9 +13,10 @@ const Something = () => {
                 {
                     images.map((image, index) => (
                         <div key={index}
-                             className={"w-[360px] text-[#fff] flex flex-col items-center justify-center h-[180px] rounded-[12px]"} style={{
-                            backgroundImage: `url(${image})`
-                        }}>
+                             className={"w-[100%] text-[#fff] flex flex-col items-center justify-center h-[180px] rounded-[12px]"}
+                             style={{
+                                 backgroundImage: `url(${image})`
+                             }}>
                             <h5 className={"text-[20px]"}>Advertising</h5>
                             <p className={"text-[13px]"}>360 px * 180px</p>
                         </div>))

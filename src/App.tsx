@@ -19,6 +19,7 @@ import ProfileMarkedLayout from "./layouts/profile/ProfileMarkedLayout.tsx";
 import ProfileMarkedSendPosts from "./components/profile/profilePosts/ProfileMarkedSendPosts.tsx";
 import ProfileMarkedSendVideos from "./components/profile/profilePosts/ProfileMarkedSendVideos.tsx";
 import PostDetail from "./pages/post/PostDetail.tsx";
+import {ToastContainer} from "react-toastify";
 
 const Home = lazy(() => import("./pages/Home"));
 const AboutUs = lazy(() => import("./components/aboutUs/AboutUs"));
@@ -43,61 +44,64 @@ const App = () => {
     }, []);
 
     return (
-        <BrowserRouter>
-            <AnimatePresence mode="wait">
-                {/*{isLoading ? (*/}
-                {/*    <motion.div*/}
-                {/*        key="loading"*/}
-                {/*        initial={{opacity: 1}}*/}
-                {/*        animate={{opacity: 1}}*/}
-                {/*        exit={{opacity: 0, scale: 0.9}}*/}
-                {/*        transition={{duration: 0.8}}*/}
-                {/*    >*/}
-                {/*        <LoadingScreen progress={loadingProgress}/>*/}
-                {/*    </motion.div>*/}
-                {/*) : (*/}
-                <Suspense fallback={<LoadingScreen progress={loadingProgress}/>}>
-                    <Routes>
-                        <Route path="/" element={<HomeLayout/>}>
-                            <Route index={true} element={<Home/>}/>
-                            <Route path="/about-us" element={<AboutUs/>}/>
-                            <Route path="/contact" element={<Contact/>}/>
-                            <Route path={"/post/:id"} element={<PostDetail/>}/>
-                            <Route path={"/profile"} element={<ProfileLayout/>}>
-                                <Route
-                                    index={true}
-                                    element={<Navigate to={"marked"} replace={true}/>}
-                                />
-                                <Route path={"marked"} element={<ProfileMarkedLayout/>}>
-                                    <Route index={true} element={<Navigate to={"send-posts"} replace={true}/>}/>
-                                    <Route path={"send-posts"} element={<ProfileMarkedSendPosts/>}/>
-                                    <Route path={"send-videos"} element={<ProfileMarkedSendVideos/>}/>
-                                </Route>
-                                <Route path={"send"} element={<ProfilePostLayout/>}>
+        <>
+            <BrowserRouter>
+                <AnimatePresence mode="wait">
+                    {/*{isLoading ? (*/}
+                    {/*    <motion.div*/}
+                    {/*        key="loading"*/}
+                    {/*        initial={{opacity: 1}}*/}
+                    {/*        animate={{opacity: 1}}*/}
+                    {/*        exit={{opacity: 0, scale: 0.9}}*/}
+                    {/*        transition={{duration: 0.8}}*/}
+                    {/*    >*/}
+                    {/*        <LoadingScreen progress={loadingProgress}/>*/}
+                    {/*    </motion.div>*/}
+                    {/*) : (*/}
+                    <Suspense fallback={<LoadingScreen progress={loadingProgress}/>}>
+                        <Routes>
+                            <Route path="/" element={<HomeLayout/>}>
+                                <Route index={true} element={<Home/>}/>
+                                <Route path="/about-us" element={<AboutUs/>}/>
+                                <Route path="/contact" element={<Contact/>}/>
+                                <Route path={"/post/:id"} element={<PostDetail/>}/>
+                                <Route path={"/profile"} element={<ProfileLayout/>}>
                                     <Route
                                         index={true}
-                                        element={<Navigate to={"post"} replace={true}/>}
+                                        element={<Navigate to={"marked"} replace={true}/>}
                                     />
-                                    <Route path={"post"} element={<ProfileSendPost/>}/>
-                                    <Route path={"video"} element={<ProfileSendVideo/>}/>
+                                    <Route path={"marked"} element={<ProfileMarkedLayout/>}>
+                                        <Route index={true} element={<Navigate to={"send-posts"} replace={true}/>}/>
+                                        <Route path={"send-posts"} element={<ProfileMarkedSendPosts/>}/>
+                                        <Route path={"send-videos"} element={<ProfileMarkedSendVideos/>}/>
+                                    </Route>
+                                    <Route path={"send"} element={<ProfilePostLayout/>}>
+                                        <Route
+                                            index={true}
+                                            element={<Navigate to={"post"} replace={true}/>}
+                                        />
+                                        <Route path={"post"} element={<ProfileSendPost/>}/>
+                                        <Route path={"video"} element={<ProfileSendVideo/>}/>
+                                    </Route>
+                                    <Route path={"posts"} element={<ProfilePosts/>}/>
                                 </Route>
-                                <Route path={"posts"} element={<ProfilePosts/>}/>
+                                <Route path={"/profile-edit"} element={<ProfileEdit/>}/>
+                                <Route path="/404" element={<NotFound/>}/>
+                                <Route path="*" element={<NotFound/>}/>
                             </Route>
-                            <Route path={"/profile-edit"} element={<ProfileEdit/>}/>
-                            <Route path="/404" element={<NotFound/>}/>
-                            <Route path="*" element={<NotFound/>}/>
-                        </Route>
-                        <Route path={"/auth"} element={<AuthLayout/>}>
-                            <Route index={true} element={<Navigate to={"login"} replace={true}/>}/>
-                            <Route path={"login"} element={<Login/>}/>
-                            <Route path={"register"} element={<Register/>}/>
-                            <Route path={"forgot"} element={<ForgotPassword/>}/>
-                        </Route>
-                    </Routes>
-                </Suspense>
-                {/*)}*/}
-            </AnimatePresence>
-        </BrowserRouter>
+                            <Route path={"/auth"} element={<AuthLayout/>}>
+                                <Route index={true} element={<Navigate to={"login"} replace={true}/>}/>
+                                <Route path={"login"} element={<Login/>}/>
+                                <Route path={"register"} element={<Register/>}/>
+                                <Route path={"forgot"} element={<ForgotPassword/>}/>
+                            </Route>
+                        </Routes>
+                    </Suspense>
+                    {/*)}*/}
+                </AnimatePresence>
+            </BrowserRouter>
+            <ToastContainer/>
+        </>
     );
 };
 
