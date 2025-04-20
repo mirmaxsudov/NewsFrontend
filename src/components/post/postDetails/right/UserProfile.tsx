@@ -1,6 +1,11 @@
 import UserImage from "../../../../../public/images/users/user.png"
+import UserPreviewType from "../../../../types/user/UserType.ts";
 
-const UserProfile = () => {
+type UserProfilePropsType = {
+    owner: UserPreviewType
+}
+
+const UserProfile = ({owner}: UserProfilePropsType) => {
     return (
         <>
             <div className={"bg-[#F5F5F5] p-[15px] rounded-[12px]"}>
@@ -8,18 +13,19 @@ const UserProfile = () => {
                     <div className={"size-[87px]"}>
                         <img
                             className={"object-cover w-full h-full rounded-[6px]"}
-                            src={UserImage} alt={"User Image"}/>
+                            src={!owner.profileImage ? UserImage : owner.profileImage.url} alt={"User Image"}/>
                     </div>
                     <div className={"flex-1"}>
                         <div className={"flex justify-between items-center"}>
                             <h6 className={"text-[#3E3232] text-[16px] font-medium"}>
-                                Louis Hoebregts
+                                {owner.firstname}
                             </h6>
                             <p className={"text-[12px] text-[#3E3232BF] font-normal"}>
                                 27 post
                             </p>
                         </div>
-                        <button className={"mt-[16px] text-[14px] font-medium py-[10px] px-[16px] rounded-[12px] capitalize flex items-center gap-[8px] bg-[#F81539BF] text-[#fff]"}>
+                        <button
+                            className={"mt-[16px] text-[14px] font-medium py-[10px] px-[16px] rounded-[12px] capitalize flex items-center gap-[8px] bg-[#F81539BF] text-[#fff]"}>
                             <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
                                  xmlns="http://www.w3.org/2000/svg">
                                 <path

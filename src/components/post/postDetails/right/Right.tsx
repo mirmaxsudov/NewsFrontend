@@ -2,8 +2,13 @@ import UserProfile from "./UserProfile.tsx";
 import PostDetailTags from "./PostDetailTags.tsx";
 import TopPosts from "./TopPosts.tsx";
 import Something from "./Something.tsx";
+import {SendPostResponse} from "../../../../types/post/PostTypes.ts";
 
-const Right = () => {
+type RightPropsType = {
+    post: SendPostResponse
+}
+
+const Right = ({post}: RightPropsType) => {
     return (
         <>
             <div className={"col-span-3"}>
@@ -37,7 +42,7 @@ const Right = () => {
                         comment
                     </div>
                 </div>
-                <UserProfile/>
+                <UserProfile owner={post.owner}/>
                 <PostDetailTags/>
                 <TopPosts/>
                 <Something/>
