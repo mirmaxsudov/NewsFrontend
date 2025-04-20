@@ -1,16 +1,15 @@
 import {useState} from "react";
 import {FaGoogle, FaFacebookF, FaEye, FaEyeSlash} from "react-icons/fa";
-import {Link, useNavigate} from "react-router-dom";
+import {Link} from "react-router-dom";
 import {toast} from "react-toastify";
 import {login} from "../../api/requests/auth/auth.api.ts";
 import {useDispatch} from "react-redux";
 import {setValues} from "../../store/auth/authSlice.ts";
 
 const Login = () => {
-    const [showPassword, setShowPassword] = useState(false);
+    const [showPassword, setShowPassword] = useState<boolean>(false);
     const [password, setPassword] = useState<string>("");
     const [username, setUsername] = useState<string>("");
-    const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const handleSubmit = async (e: React.FormEvent) => {

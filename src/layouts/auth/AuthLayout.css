@@ -6,6 +6,7 @@
     background-image: url("../../assets/images/auth/bg.png");
     background-size: 120%;
     background-position: center;
+    background-attachment: fixed;
     background-repeat: no-repeat;
     animation: bg-advanced-float 40s ease-in-out infinite;
     transition: background-size 1s ease;
