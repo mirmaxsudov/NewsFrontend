@@ -1,9 +1,36 @@
-import {useState} from "react";
+import React, {useState} from "react";
 import {FaGoogle, FaFacebookF, FaEye, FaEyeSlash} from "react-icons/fa";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import {authenticate} from "../../api/requests/auth/auth.api.ts";
+import {toast} from "react-toastify";
 
 const Register = () => {
     const [showPassword, setShowPassword] = useState(false);
+    const [password, setPassword] = useState<string>("");
+    const [code, setCode] = useState<string>("");
+    const navigate = useNavigate();
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+
+        if (!password) {
+            toast("Password is required", {type: "error"});
+            return;
+        } else if (!code) {
+            toast("Code is required", {type: "error"});
+            return;
+        }
+
+        try {
+            const data = await authenticate(code, password);
+            if (data) {
+                toast("You have successfully logged in", {type: "success"});
+                navigate("/auth/login")
+            }
+        } catch (error) {
+            toast(error?.response?.data?.message, {type: "error"});
+        }
+    };
 
     return (
         <div className="flex items-center w-[500px] justify-center">
@@ -31,7 +58,9 @@ const Register = () => {
                     <label className="block text-white mb-1">Telegram Code</label>
                     <input
                         type="text"
+                        value={code}
                         placeholder="1111"
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setCode(e.target.value)}
                         className="w-full p-3 rounded-md border border-[#2A2A31] bg-transparent text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                 </div>
@@ -44,8 +73,10 @@ const Register = () => {
                     </div>
                     <div className="relative">
                         <input
-                            type={showPassword ? "text" : "password"}
+                            value={password}
                             placeholder="Enter your password"
+                            type={showPassword ? "text" : "password"}
+                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
                             className="w-full p-3 rounded-md border border-[#2A2A31] bg-transparent text-white focus:outline-none focus:ring-2 focus:ring-blue-500 pr-10"
                         />
                         <span
@@ -58,6 +89,8 @@ const Register = () => {
                 </div>
 
                 <button
+                    type={"submit"}
+                    onClick={handleSubmit}
                     className="w-full bg-[#246BFD] hover:bg-blue-600 transition text-white py-3 rounded-md font-semibold mb-4">
                     Create account
                 </button>
