@@ -1,5 +1,6 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {AuthUserPreviewType} from "../../types/auth/Auth";
+import Cookies from "js-cookie";
 
 export interface AuthStateType {
     token: string;
@@ -24,8 +25,8 @@ const authSlice = createSlice({
         ) => {
             state.token = action.payload.token;
             state.user = action.payload.user;
-            localStorage.setItem("token", action.payload.token);
-            localStorage.setItem("user", JSON.stringify(action.payload.user));
+            Cookies.set("token", action.payload.token, {expires: 7, secure: true})
+            Cookies.set("user", JSON.stringify(action.payload.user), {expires: 7, secure: true})
         },
         clearAuth: (state) => {
             state.token = "";
