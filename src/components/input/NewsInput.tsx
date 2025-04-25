@@ -18,21 +18,21 @@ const NewsInput = ({className, label, type, onChange, val}: NewsInputProps) => {
     };
 
     return (
-        <>
+        <div className={"w-full"}>
             <label className="flex flex-col gap-[15px]">
         <span className="text-[#3E3232] text-[16px] inline-block capitalize font-medium">
           {label}
         </span>
                 <input
                     defaultValue={val}
-                    className={`text-[#3E3232] font-medium focus:outline-none focus:ring-1 focus:ring-[#3E3232] transition-all duration-300 bg-[#F5F5F5] py-[10px] px-[16px] rounded-[12px] ${className} `}
+                    className={`text-[#3E3232] font-medium focus:outline-none focus:ring-1 inline-block focus:ring-[#3E3232] transition-all duration-300 bg-[#F5F5F5] py-[10px] px-[16px] rounded-[12px] ${className} `}
                     placeholder={placeHolder}
                     ref={inputRef}
                     type={type}
                     onChange={handleChange}
                 />
             </label>
-        </>
+        </div>
     );
 };
 

@@ -87,6 +87,7 @@ const App = () => {
                                 </Route>
                                 <Route path={"/profile-edit"} element={<ProfileEdit/>}/>
                                 <Route path="/404" element={<NotFound/>}/>
+                                <Route path={"/forbidden"} element={<h1>Forbidden</h1>}/>
                                 <Route path="*" element={<NotFound/>}/>
                             </Route>
                             <Route path={"/auth"} element={<AuthLayout/>}>
