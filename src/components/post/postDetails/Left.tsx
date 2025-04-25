@@ -1,4 +1,5 @@
 import {SendPostResponse} from "../../../types/post/PostTypes.ts";
+import PostComments from "./comment/PostComments.tsx";
 
 const Left = ({post}: { post: SendPostResponse }) => {
     return (
@@ -45,10 +46,13 @@ const Left = ({post}: { post: SendPostResponse }) => {
                         </span>
                     </div>
                 </div>
-                <div className={"my-[20px]"} dangerouslySetInnerHTML={{
-                    __html: post.postBody
-                }}>
+                <div className={"border rounded-[12px] p-[20px]"}>
+                    <div className={"my-[20px] max-h-[600px] overflow-x-scroll no-scrollbar"} dangerouslySetInnerHTML={{
+                        __html: post.postBody
+                    }}>
+                    </div>
                 </div>
+                <PostComments/>
             </div>
         </>
     )

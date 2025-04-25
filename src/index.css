@@ -20,7 +20,7 @@
         @apply relative;
     }
 
-    .red-line::after {
+    .red-line::before {
         content: "";
         position: absolute;
         width: 5px;

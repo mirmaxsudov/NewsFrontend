@@ -5,7 +5,7 @@ import {fetchById, viewed} from "../../api/requests/post/post.api.ts";
 import GenerateBreadCrumbs from "../../helpers/GenerateBreadCrumbs.tsx";
 import Left from "../../components/post/postDetails/Left.tsx";
 import Right from "../../components/post/postDetails/right/Right.tsx";
-import PostComments from "../../components/post/postDetails/PostComments.tsx";
+import PostComments from "../../components/post/postDetails/comment/PostComments.tsx";
 
 const BREAD_CRUMBS_VALUES = [
     {
@@ -77,8 +77,6 @@ const PostDetail = () => {
                         <Left post={post}/>
                         <Right post={post}/>
                     </div>
-
-                    <PostComments/>
                 </div>
             </section>
         </>
