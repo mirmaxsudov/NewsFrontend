@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import NewsInput from "../../../input/NewsInput.tsx";
+import NewsInput from "../../../../@core/components/input/NewsInput.tsx";
 import {InputEnum} from "../../../../enums/inputEnum.ts";
 
 const AddComment: React.FC = () => {

@@ -7,37 +7,37 @@ const Category: React.FC = () => {
     const CategoryItems: CategoryItemType[] = [
         {
             name: CategoryItemTitle.FOOD,
-            link: "/",
+            link: "/category/FOOD",
             image: "/public/images/category/food.png"
         },
         {
             name: CategoryItemTitle.ANIMAL,
-            link: "/",
+            link: "/category/ANIMAL",
             image: "/public/images/category/animal.png"
         },
         {
             name: CategoryItemTitle.CAR,
-            link: "/",
+            link: "/category/CAR",
             image: "/public/images/category/car.png"
         },
         {
             name: CategoryItemTitle.SPORT,
-            link: "/",
+            link: "/category/SPORT",
             image: "/public/images/category/sport.png"
         },
         {
             name: CategoryItemTitle.MUSIC,
-            link: "/",
+            link: "/category/MUSIC",
             image: "/public/images/category/music.png"
         },
         {
             name: CategoryItemTitle.TECHNOLOGY,
-            link: "/",
+            link: "/category/TECHNOLOGY",
             image: "/public/images/category/technology.png"
         },
         {
             name: CategoryItemTitle.ABSTRACT,
-            link: "/",
+            link: "/category/ABSTRACT",
             image: "/public/images/category/abstract.png"
         }
     ]

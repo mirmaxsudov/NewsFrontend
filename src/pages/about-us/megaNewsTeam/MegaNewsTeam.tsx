@@ -4,9 +4,9 @@ import Person3 from "../../../assets/images/megaNewsTeam/Person3.png";
 import Person4 from "../../../assets/images/megaNewsTeam/Person4.png";
 import Person5 from "../../../assets/images/megaNewsTeam/Person5.png";
 import Person6 from "../../../assets/images/megaNewsTeam/Person6.png";
-import { TeamType } from "../../../types/megaNewsTeam/Team";
+import { TeamType } from "../../../types/megaNewsTeam/Team.ts";
 import { v4 as uuid } from "uuid";
-import MegaNewsTeamCard from "./MegaNewsTeamCard";
+import MegaNewsTeamCard from "./MegaNewsTeamCard.tsx";
 
 const MegaNewsTeam = () => {
   const TEAM: TeamType[] = [

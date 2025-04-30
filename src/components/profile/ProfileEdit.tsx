@@ -1,11 +1,11 @@
 import GenerateBreadCrumbs from "../../helpers/GenerateBreadCrumbs.tsx";
 import {useEffect, useRef, useState} from "react";
 import Editor, {EditorRef} from "../editor/Editor.tsx";
-import NewsInput from "../input/NewsInput.tsx";
+import NewsInput from "../../@core/components/input/NewsInput.tsx";
 import {InputEnum} from "../../enums/inputEnum.ts";
-import FileUpload from "../input/FileUpload.tsx";
+import FileUpload from "../../@core/components/input/FileUpload.tsx";
 import {v4 as uuid} from "uuid";
-import NewsButton from "../btns/NewsButton.tsx";
+import NewsButton from "../../@core/components/btns/NewsButton.tsx";
 import {fetchUserDetails} from "../../api/requests/user/user.api.ts";
 
 type Breadcrumb = {

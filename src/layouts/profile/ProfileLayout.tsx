@@ -1,7 +1,7 @@
 import {NavLink, Outlet} from "react-router-dom";
 import ProfileLayoutBanner from "../../assets/images/profile/banner.png";
 import ProfileImage from "../../assets/images/profile/profileImage.png";
-import NewsButton from "../../components/btns/NewsButton.tsx";
+import NewsButton from "../../@core/components/btns/NewsButton.tsx";
 import "./ProfilePostLayout.css"
 
 const ProfileLayout = () => {

@@ -1,7 +1,7 @@
 import GenerateBreadCrumbs from "../../helpers/GenerateBreadCrumbs.tsx";
-import MegaNewsInformation from "./megaNewsInformation/MegaNewsInformation";
-import MegaNewsTeam from "./megaNewsTeam/MegaNewsTeam";
-import VideoSection from "./VideoSection/VideoSection";
+import MegaNewsInformation from "./megaNewsInformation/MegaNewsInformation.tsx";
+import MegaNewsTeam from "./megaNewsTeam/MegaNewsTeam.tsx";
+import VideoSection from "./VideoSection/VideoSection.tsx";
 
 const AboutUs = () => {
   return (
