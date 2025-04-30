@@ -1,6 +1,6 @@
 import {useState} from "react";
 import {FaGoogle, FaFacebookF, FaEye, FaEyeSlash} from "react-icons/fa";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {toast} from "react-toastify";
 import {login} from "../../api/requests/auth/auth.api.ts";
 import {useDispatch} from "react-redux";
@@ -11,6 +11,7 @@ const Login = () => {
     const [password, setPassword] = useState<string>("");
     const [username, setUsername] = useState<string>("");
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -24,7 +25,7 @@ const Login = () => {
                 toast("You have successfully logged in", {type: "success"});
             }
 
-            window.location.href = "/profile-edit";
+            navigate("/profile-edit");
         } catch (error) {
             if (error)
                 toast(error?.response?.data?.message);

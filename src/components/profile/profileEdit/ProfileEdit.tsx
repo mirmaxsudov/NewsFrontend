@@ -1,16 +1,31 @@
-import GenerateBreadCrumbs from "../../helpers/GenerateBreadCrumbs.tsx";
-import {useEffect, useRef, useState} from "react";
-import Editor, {EditorRef} from "../editor/Editor.tsx";
-import NewsInput from "../../@core/components/input/NewsInput.tsx";
-import {InputEnum} from "../../enums/inputEnum.ts";
-import FileUpload from "../../@core/components/input/FileUpload.tsx";
+import GenerateBreadCrumbs from "../../../helpers/GenerateBreadCrumbs.tsx";
+import {FormEvent, useEffect, useRef, useState} from "react";
+import Editor, {EditorRef} from "../../editor/Editor.tsx";
+import NewsInput from "../../../@core/components/input/NewsInput.tsx";
+import {InputEnum} from "../../../enums/inputEnum.ts";
+import FileUpload from "../../../@core/components/input/FileUpload.tsx";
 import {v4 as uuid} from "uuid";
-import NewsButton from "../../@core/components/btns/NewsButton.tsx";
-import {fetchUserDetails} from "../../api/requests/user/user.api.ts";
+import NewsButton from "../../../@core/components/btns/NewsButton.tsx";
+import {fetchUserDetails, updateUser} from "../../../api/requests/user/user.api.ts";
+import {useAppDispatch, useAppSelector} from "../../../hooks/hooks.ts";
+import ProfileEditLoadingPage from "./ProfileEditLoadingPage.tsx";
+import {toast} from "react-toastify";
+import {changeUser, setValues} from "../../../store/auth/authSlice.ts";
+import UserEditor from "./UserEditor.tsx";
 
 type Breadcrumb = {
     value: string;
     link: string;
+}
+
+export type UserUpdateType = {
+    email: string,
+    firstname: string,
+    lastname: string,
+    username: string,
+    password: string,
+    oldPassword: string,
+    explanation: string
 }
 
 const breadCrumbVales: Breadcrumb[] = [
@@ -49,65 +64,92 @@ const ProfileEdit = () => {
     const [email, setEmail] = useState<string>("");
     const [banner, setBanner] = useState();
     const [profileImage, setProfileImage] = useState();
-    const [editorData, setEditorData] = useState<string>("");
-    const editorRef = useRef<EditorRef>(null);
     const [user, setUser] = useState<User>({} as User);
+    const [loading, setLoading] = useState<boolean>(true);
+    const dispatch = useAppDispatch();
+    const auth = useAppSelector(state => state.auth);
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetchUserDetails();
-                const data = response.data;
+        if (loading)
+            fetchData();
+    }, [loading]);
 
-                console.log(response)
-                console.log(data)
+    const fetchData = async () => {
+        try {
+            const response = await fetchUserDetails(auth.user.id);
+            const data = response.data;
 
-                setUser(data)
-                setEditorData(user.explanation)
+            setUser(data)
+            setEditorData(user.explanation);
+            dispatch(changeUser(data))
 
-            } catch (error) {
-                console.log(error)
-            }
+            console.log(data)
+        } catch (error) {
+            console.log(error)
+        } finally {
+            setLoading(false)
+        }
+    }
+
+    const handleSubmit = async (e: FormEvent) => {
+        e.preventDefault();
+        const data: Partial<UserUpdateType> = {
+            email,
+            firstname: firstName,
+            lastname: lastName,
+            username,
+            password,
+            oldPassword,
         }
 
-        fetchData();
-    }, []);
-
-    const handleSubmit = async () => {
-        // ToDo: Add validation
-        // ToDo: Add request
-        // ToDo: Add error handling
-
-        console.log("Submit")
+        try {
+            const response = await updateUser(data);
+            if (response)
+                toast("Successfully updated", {type: "success"})
+            setLoading(true);
+        } catch (error) {
+            console.log(error)
+            toast("Something went wrong", {type: "error"})
+        }
     }
+
+    if (loading)
+        return (<ProfileEditLoadingPage/>)
 
     return (<>
         <section className={"profile__section mb-[50px] mt-[25px]"}>
             <div className={"container max-w-container mx-auto"}>
                 <GenerateBreadCrumbs values={breadCrumbVales} current={"profile edit"}/>
-
-                {/*  Main content  */}
                 <div className={"grid grid-cols-3 grid-rows-2 gap-[24px] my-[24px]"}>
-                    <NewsInput val={user.firstname} label={"First name"} type={InputEnum.TEXT} onChange={setFirstName}/>
+                    <NewsInput disabled={false} val={user.firstname} label={"First name"} type={InputEnum.TEXT}
+                               onChange={setFirstName}/>
                     <NewsInput val={user.lastname} label={"Last name"} type={InputEnum.TEXT} onChange={setLastName}/>
-                    <NewsInput val={user.username} label={"Username"} type={InputEnum.TEXT} onChange={setUsername}/>
+                    <NewsInput disabled={true} val={user.username} label={"Username"} type={InputEnum.TEXT}
+                               onChange={setUsername}/>
 
-                    <NewsInput label={"Old password"} type={InputEnum.PASSWORD} onChange={setOldPassword}/>
-                    <NewsInput label={"password"} type={InputEnum.PASSWORD} onChange={setPassword}/>
+                    <NewsInput disabled={true} label={"Old password"} type={InputEnum.PASSWORD}
+                               onChange={setOldPassword}/>
+                    <NewsInput disabled={true} label={"password"} type={InputEnum.PASSWORD} onChange={setPassword}/>
                     <NewsInput val={user.email} label={"Email"} type={InputEnum.EMAIL} onChange={setEmail}/>
                 </div>
                 <div className={"w-full my-[24px]"}>
                     <span className={"text-[#3E3232] mb-[5px] text-[16px] inline-block capitalize font-medium"}>
                             add banner
                     </span>
-                    <FileUpload key={uuid()} onFileChange={setBanner}/>
+                    {
+                        user.banner ? <>
+                                <img src={user.banner.url} alt={user.firstname}/>
+                            </> :
+                            <FileUpload key={uuid()} onFileChange={setBanner}/>
+                    }
                 </div>
                 <div className={"grid grid-cols-12 grid-rows-1 gap-[24px]"}>
                     <div className={"col-span-9"}>
                         <span className={"text-[#3E3232] mb-[5px] text-[16px] inline-block capitalize font-medium"}>
                             explanation
                         </span>
-                        <Editor ref={editorRef} onChange={setEditorData} value={editorData}/>
+                        <UserEditor cnt={user.explanation}/>
+                        {/*<Editor ref={editorRef} onChange={setEditorData} value={editorData}/>*/}
                     </div>
                     <div className={"col-span-3"}>
                         <span className={"text-[#3E3232] mb-[5px] text-[16px] inline-block capitalize font-medium"}>
@@ -117,7 +159,8 @@ const ProfileEdit = () => {
                     </div>
                 </div>
                 <div className={"flex justify-end mt-[44px]"}>
-                    <NewsButton bgColor={"bg-[#F81539BF]"} isLink={false} textColor={"text-[#fff]"}>
+                    <NewsButton onClick={handleSubmit} bgColor={"bg-[#F81539BF]"} isLink={false}
+                                textColor={"text-[#fff]"}>
                         <>
                             <svg width="14" height="13" viewBox="0 0 14 13" fill="none"
                                  xmlns="http://www.w3.org/2000/svg">

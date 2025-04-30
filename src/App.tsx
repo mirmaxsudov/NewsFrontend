@@ -5,7 +5,7 @@ import {lazy, Suspense, useState, useEffect} from "react";
 import LoadingScreen from "./@core/components/loading/LoadingScreen";
 import {AnimatePresence, motion} from "framer-motion";
 import Contact from "./pages/contact/Contact";
-import ProfileEdit from "./components/profile/ProfileEdit.tsx";
+import ProfileEdit from "./components/profile/profileEdit/ProfileEdit.tsx";
 import ProfileLayout from "./layouts/profile/ProfileLayout.tsx";
 import ProfilePostLayout from "./layouts/profile/ProfilePostLayout.tsx";
 import ProfilePosts from "./components/profile/profilePosts/ProfilePosts.tsx";

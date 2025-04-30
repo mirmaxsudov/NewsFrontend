@@ -18,12 +18,16 @@ const authSlice = createSlice({
     name: "auth",
     initialState: initAuthState,
     reducers: {
+        changeUser: (state, action: PayloadAction<AuthUserPreviewType>) => {
+            state.user = action.payload
+        },
         setValues: (
             state,
             action: PayloadAction<{ token: string; user: AuthUserPreviewType }>
         ) => {
             state.token = action.payload.token;
             state.user = action.payload.user;
+            console.log(action.payload)
             Cookies.set("token", action.payload.token, {expires: 7, secure: true})
             Cookies.set("user", JSON.stringify(action.payload.user), {expires: 7, secure: true})
         },
@@ -36,5 +40,5 @@ const authSlice = createSlice({
     },
 });
 
-export const {setValues, clearAuth} = authSlice.actions;
+export const {setValues, clearAuth, changeUser} = authSlice.actions;
 export default authSlice.reducer;

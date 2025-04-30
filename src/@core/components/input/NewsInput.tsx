@@ -7,9 +7,10 @@ type NewsInputProps = {
     type: InputEnum;
     val?: string | number | undefined;
     onChange: (value: string) => void;
+    disabled?: boolean
 };
 
-const NewsInput = ({className, label, type, onChange, val}: NewsInputProps) => {
+const NewsInput = ({className, label, type, onChange, val, disabled = false}: NewsInputProps) => {
     const placeHolder = "";
     const inputRef = useRef<HTMLInputElement>(null);
 
@@ -25,11 +26,11 @@ const NewsInput = ({className, label, type, onChange, val}: NewsInputProps) => {
         </span>
                 <input
                     defaultValue={val}
-                    value={val}
                     className={`text-[#3E3232] font-medium focus:outline-none focus:ring-1 inline-block focus:ring-[#3E3232] transition-all duration-300 bg-[#F5F5F5] py-[10px] px-[16px] rounded-[12px] ${className} `}
                     placeholder={placeHolder}
                     ref={inputRef}
                     type={type}
+                    disabled={disabled}
                     onChange={handleChange}
                 />
             </label>
