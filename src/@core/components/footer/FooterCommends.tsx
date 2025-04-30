@@ -1,4 +1,4 @@
-import { FooterCommend } from "../../types/footer/Footer";
+import { FooterCommend } from "../../../types/footer/Footer.ts";
 import { v4 as uuid } from "uuid";
 
 const FooterCommends = () => {

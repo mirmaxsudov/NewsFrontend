@@ -2,15 +2,15 @@ import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import NotFound from "./errors/NotFound";
 import HomeLayout from "./layouts/HomeLayout";
 import {lazy, Suspense, useState, useEffect} from "react";
-import LoadingScreen from "./components/loading/LoadingScreen";
+import LoadingScreen from "./@core/components/loading/LoadingScreen";
 import {AnimatePresence, motion} from "framer-motion";
-import Contact from "./components/contact/Contact";
+import Contact from "./pages/contact/Contact";
 import ProfileEdit from "./components/profile/ProfileEdit.tsx";
 import ProfileLayout from "./layouts/profile/ProfileLayout.tsx";
 import ProfilePostLayout from "./layouts/profile/ProfilePostLayout.tsx";
 import ProfilePosts from "./components/profile/profilePosts/ProfilePosts.tsx";
 import ProfileSendPost from "./components/profile/ProfileSendPost.tsx";
-import ProfileSendVideo from "./components/profile/ProfileSendVideo.tsx";
+import ProfileSendVideo from "./components/profile/video/ProfileSendVideo.tsx";
 import AuthLayout from "./layouts/auth/AuthLayout.tsx";
 import Login from "./pages/auth/Login.tsx";
 import Register from "./pages/auth/Register.tsx";
@@ -20,9 +20,10 @@ import ProfileMarkedSendPosts from "./components/profile/profilePosts/ProfileMar
 import ProfileMarkedSendVideos from "./components/profile/profilePosts/ProfileMarkedSendVideos.tsx";
 import PostDetail from "./pages/post/PostDetail.tsx";
 import {ToastContainer} from "react-toastify";
+import PostsByCategory from "./pages/category/PostsByCategory.tsx";
 
 const Home = lazy(() => import("./pages/Home"));
-const AboutUs = lazy(() => import("./components/aboutUs/AboutUs"));
+const AboutUs = lazy(() => import("./pages/about-us/AboutUs.tsx"));
 
 const App = () => {
     const [isLoading, setIsLoading] = useState(true);
@@ -62,6 +63,7 @@ const App = () => {
                         <Routes>
                             <Route path="/" element={<HomeLayout/>}>
                                 <Route index={true} element={<Home/>}/>
+                                <Route path={"/category/:category"} element={<PostsByCategory/>}/>
                                 <Route path="/about-us" element={<AboutUs/>}/>
                                 <Route path="/contact" element={<Contact/>}/>
                                 <Route path={"/post/:id"} element={<PostDetail/>}/>

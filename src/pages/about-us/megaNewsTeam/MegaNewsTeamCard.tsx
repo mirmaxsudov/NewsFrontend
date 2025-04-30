@@ -1,4 +1,4 @@
-import { TeamCardProps } from "../../../types/megaNewsTeam/MegeNewsTeamCard";
+import { TeamCardProps } from "../../../types/megaNewsTeam/MegeNewsTeamCard.ts";
 
 const MegaNewsTeamCard = ({ team }: TeamCardProps) => {
   // Render MegaNewsTeamCard component with team data

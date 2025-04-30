@@ -1,9 +1,13 @@
-import {useRef, useState} from "react";
-import Editor, {EditorRef} from "../editor/Editor.tsx";
+import React, {useRef, useState} from "react";
+import Editor, {EditorRef} from "../../components/editor/Editor.tsx";
 import GenerateBreadCrumbs from "../../helpers/GenerateBreadCrumbs.tsx";
-import NewsInput from "../input/NewsInput.tsx";
+import NewsInput from "../../@core/components/input/NewsInput.tsx";
 import {InputEnum} from "../../enums/inputEnum.ts";
-import FileUpload from "../input/FileUpload.tsx";
+import FileUpload from "../../@core/components/input/FileUpload.tsx";
+import NewsButton from "../../@core/components/btns/NewsButton.tsx";
+import {sendContact} from "../../api/requests/contact/contact.api.ts";
+import {uploadFile} from "../../api/requests/file/file.api.ts";
+import {toast} from "react-toastify";
 
 const Contact = () => {
     const [editorData, setEditorData] = useState<string>("");
@@ -12,6 +16,35 @@ const Contact = () => {
     const [name, setName] = useState<string>("");
     const [email, setEmail] = useState<string>("");
     const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+
+        try {
+            const imageId = await uploadFile(uploadedFiles[0]);
+
+            const data = await sendContact({
+                subject,
+                name,
+                email,
+                imageId,
+                explanation: editorData
+            })
+
+            console.log(data)
+
+            toast("Successfully sent", {type: "success"});
+
+            setName("");
+            setEmail("");
+            setSubject("");
+            setEditorData("");
+            setUploadedFiles([]);
+        } catch (e: unknown) {
+            console.log(e);
+            toast("Something went wrong", {type: "error"});
+        }
+    }
 
     const handleFileChange = (files: File[]) => {
         setUploadedFiles(files);
@@ -30,12 +63,14 @@ const Contact = () => {
                 <div className="inputs mt-[40px]">
                     <div className="grid grid-cols-3 gap-[24px]">
                         <NewsInput
+                            val={subject}
                             onChange={setSubject}
                             label="subject"
                             type={InputEnum.TEXT}
                         />
-                        <NewsInput onChange={setName} label="Name" type={InputEnum.TEXT}/>
+                        <NewsInput val={name} onChange={setName} label="Name" type={InputEnum.TEXT}/>
                         <NewsInput
+                            val={email}
                             onChange={setEmail}
                             label="email"
                             type={InputEnum.EMAIL}
@@ -65,6 +100,11 @@ const Contact = () => {
                                 ))}
                             </div>
                         </div>
+                        <NewsButton
+                            onClick={handleSubmit}
+                            className={"text-center text-[14px] font-medium py-[10px] px-[16px] rounded-[12px] capitalize bg-[#F81539BF] text-[#fff]"}>
+                            Send
+                        </NewsButton>
                     </div>
                 </div>
             </div>

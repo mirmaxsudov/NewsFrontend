@@ -1,10 +1,10 @@
 import {useEffect, useState} from "react";
-import NewsInput from "../input/NewsInput.tsx";
+import NewsInput from "../../@core/components/input/NewsInput.tsx";
 import {InputEnum} from "../../enums/inputEnum.ts";
 import Editor from "../editor/Editor.tsx";
-import FileUpload from "../input/FileUpload.tsx";
+import FileUpload from "../../@core/components/input/FileUpload.tsx";
 import {v4 as uuid} from "uuid";
-import NewsButton from "../btns/NewsButton.tsx";
+import NewsButton from "../../@core/components/btns/NewsButton.tsx";
 import {uploadFile} from "../../api/requests/file/file.api.ts";
 import {GET_IMAGE_URL} from "../../constants/url.ts";
 import PostRequest from "../../types/post/PostTypes.ts";

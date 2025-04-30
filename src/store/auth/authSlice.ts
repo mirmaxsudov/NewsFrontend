@@ -8,9 +8,9 @@ export interface AuthStateType {
 }
 
 const initAuthState: AuthStateType = {
-    token: localStorage.getItem("token") ?? "",
-    user: localStorage.getItem("user")
-        ? JSON.parse(localStorage.getItem("user")!)
+    token: Cookies.get("token") ?? "",
+    user: Cookies.get("user")
+        ? JSON.parse(Cookies.get("user")!)
         : ({} as AuthUserPreviewType),
 };
 
@@ -18,7 +18,6 @@ const authSlice = createSlice({
     name: "auth",
     initialState: initAuthState,
     reducers: {
-        // action.payload will be { token: string; user: AuthUserPreviewType }
         setValues: (
             state,
             action: PayloadAction<{ token: string; user: AuthUserPreviewType }>
@@ -31,8 +30,8 @@ const authSlice = createSlice({
         clearAuth: (state) => {
             state.token = "";
             state.user = {} as AuthUserPreviewType;
-            localStorage.removeItem("token");
-            localStorage.removeItem("user");
+            Cookies.set("token", "", {expires: 7, secure: true})
+            Cookies.set("user", "", {expires: 7, secure: true})
         },
     },
 });
