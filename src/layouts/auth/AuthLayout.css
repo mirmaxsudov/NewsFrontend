@@ -1,49 +1,49 @@
 .auth-layout {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-image: url("../../assets/images/auth/bg.png");
-    background-size: 120%;
-    background-position: center;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    animation: bg-advanced-float 40s ease-in-out infinite;
-    transition: background-size 1s ease;
-    will-change: background-position, background-size;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url("../../assets/images/auth/bg.png");
+  background-size: 120%;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  animation: bg-advanced-float 40s ease-in-out infinite;
+  transition: background-size 1s ease;
+  will-change: background-position, background-size;
 }
 
 @keyframes bg-advanced-float {
-    0% {
-        background-size: 100%;
-        background-position: 50% 50%;
-    }
-    10% {
-        background-size: 105%;
-        background-position: 48% 53%;
-    }
-    25% {
-        background-size: 110%;
-        background-position: 52% 47%;
-    }
-    40% {
-        background-size: 112%;
-        background-position: 50% 52%;
-    }
-    60% {
-        background-size: 115%;
-        background-position: 47% 50%;
-    }
-    75% {
-        background-size: 110%;
-        background-position: 53% 48%;
-    }
-    90% {
-        background-size: 105%;
-        background-position: 50% 51%;
-    }
-    100% {
-        background-size: 100%;
-        background-position: 50% 50%;
-    }
+  0% {
+    background-size: 100%;
+    background-position: 50% 50%;
+  }
+  10% {
+    background-size: 105%;
+    background-position: 48% 53%;
+  }
+  25% {
+    background-size: 110%;
+    background-position: 52% 47%;
+  }
+  40% {
+    background-size: 112%;
+    background-position: 50% 52%;
+  }
+  60% {
+    background-size: 115%;
+    background-position: 47% 50%;
+  }
+  75% {
+    background-size: 110%;
+    background-position: 53% 48%;
+  }
+  90% {
+    background-size: 105%;
+    background-position: 50% 51%;
+  }
+  100% {
+    background-size: 100%;
+    background-position: 50% 50%;
+  }
 }

@@ -38,7 +38,10 @@ const FooterCommendItem = (commend: FooterCommend) => {
   // Render the commend item here
 
   return (
-    <div key={commend.id} className="flex flex-col gap-2 bg-[#F5F5F5] p-[16px] rounded-[12px]">
+    <div
+      key={commend.id}
+      className="flex flex-col gap-2 bg-[#F5F5F5] p-[16px] rounded-[12px]"
+    >
       <span className="text-[#3E3232]">{commend.title}</span>
       {/* Online first line */}
       <p className="line-clamp-1">{commend.text}</p>

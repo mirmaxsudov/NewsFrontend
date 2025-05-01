@@ -1,9 +1,8 @@
 {
-    "category": [
-        {
-            "id": 1,
-            "title": "Food"
-            
-        }
-    ]
+  "category": [
+    {
+      "id": 1,
+      "title": "Food"
+    }
+  ]
 }

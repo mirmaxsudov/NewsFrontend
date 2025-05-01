@@ -1,19 +1,19 @@
 .profile-marked-link.active {
-    background-color: #F5F5F5;
+  background-color: #f5f5f5;
 }
 
 .profile-marked-link {
-    position: relative;
+  position: relative;
 }
 
 .profile-marked-link.active:before {
-    content: "";
-    position: absolute;
-    width: 4px;
-    height: 4px;
-    border-radius: 100px;
-    left: 8px;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: #F81539;
+  content: "";
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 100px;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #f81539;
 }

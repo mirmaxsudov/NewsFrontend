@@ -1,7 +1,5 @@
 const ProfileMarkedSendVideos = () => {
-    return (
-        <div>ProfileMarkedSendVideos</div>
-    )
+  return <div>ProfileMarkedSendVideos</div>;
 };
 
 export default ProfileMarkedSendVideos;
