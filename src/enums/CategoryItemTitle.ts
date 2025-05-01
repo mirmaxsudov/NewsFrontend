@@ -18,4 +18,16 @@ export enum Category {
   ABSTRACT = "ABSTRACT",
 }
 
+export enum SearchEnum {
+  NEW,
+  TRENDY,
+  POPULAR,
+  TOP
+}
+
+export enum GridType {
+  LIST,
+  GRID
+}
+
 export default CategoryItemTitle;
