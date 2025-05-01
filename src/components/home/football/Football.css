@@ -1,19 +1,19 @@
 .football__section {
-    background-size: cover;
-    background-position: center;
-    background-image: url("../../../assets/images/home/football/footballBg.png");
+  background-size: cover;
+  background-position: center;
+  background-image: url("../../../assets/images/home/football/footballBg.png");
 }
 
 .club {
-    width: calc(100% - 508px - 360px);
+  width: calc(100% - 508px - 360px);
 }
 
 .club table {
-    border-collapse: separate;
-    border-spacing: 10px;
+  border-collapse: separate;
+  border-spacing: 10px;
 }
 
 .club table th,
 .club table td {
-    padding: 5px;
+  padding: 5px;
 }

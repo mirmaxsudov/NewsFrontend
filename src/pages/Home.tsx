@@ -8,18 +8,20 @@ import TopPosts from "../components/post/top/TopPosts.tsx";
 import Weather from "../components/weather/Weather.tsx";
 
 const Home = () => {
-    return <>
-        <div>
-            <Category/>
-            <PopularPosts/>
-            <Football/>
-            <NewPosts/>
-            <LatestVideos/>
-            <TrendyPosts/>
-            <Weather/>
-            <TopPosts/>
-        </div>
+  return (
+    <>
+      <div>
+        <Category />
+        <PopularPosts />
+        <Football />
+        <NewPosts />
+        <LatestVideos />
+        <TrendyPosts />
+        <Weather />
+        <TopPosts />
+      </div>
     </>
+  );
 };
 
 export default Home;

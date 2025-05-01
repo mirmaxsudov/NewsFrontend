@@ -8,7 +8,7 @@ export default {
         padding: "1rem",
       },
       maxWidth: {
-        container: "1380px", 
+        container: "1380px",
         sm: "640px",
         md: "720px",
         lg: "960px",

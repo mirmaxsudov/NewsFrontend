@@ -3,32 +3,33 @@
 @tailwind utilities;
 
 * {
-    /*transition: all 0.5s ease-in-out;*/
+  /*transition: all 0.5s ease-in-out;*/
+  scroll-behavior: smooth;
 }
 
 @layer utilities {
-    .no-scrollbar::-webkit-scrollbar {
-        display: none;
-    }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
 
-    .no-scrollbar {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-    }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 
-    .red-line {
-        @apply relative;
-    }
+  .red-line {
+    @apply relative;
+  }
 
-    .red-line::before {
-        content: "";
-        position: absolute;
-        width: 5px;
-        height: 10px;
-        background-color: #f81539;
-        left: -10px;
-        bottom: 45%;
-        border-radius: 100px;
-        transform: translateY(50%);
-    }
+  .red-line::before {
+    content: "";
+    position: absolute;
+    width: 5px;
+    height: 10px;
+    background-color: #f81539;
+    left: -10px;
+    bottom: 45%;
+    border-radius: 100px;
+    transform: translateY(50%);
+  }
 }

@@ -1,19 +1,17 @@
-import React from "react";
-import DOMPurify from "dompurify";
 import PostItemOwner from "./PostItemOwner.tsx";
 import { useNavigate } from "react-router-dom";
-import { PostItemProps } from "../../../types/post/PostTypes.ts";
+import { SendPostPreviewForAll } from "../../../types/post/PostTypes.ts";
+import DOMPurify from "dompurify";
 import removeImgTags from "../../../helpers/DeleteImageTag.ts";
-import "./PostItem.css";
 
-const PostItem = ({ postPreview }: PostItemProps) => {
+const PostItemForAll = ({ post }: { post: SendPostPreviewForAll }) => {
   const navigate = useNavigate();
-  const { post, owner } = postPreview;
-  const sanitizedHtml = DOMPurify.sanitize(removeImgTags(post.body));
 
   const handleClick = (): void => {
     navigate(`/post/${post.id}`);
   };
+
+  const sanitizedHtml = DOMPurify.sanitize(removeImgTags(post.body));
 
   return (
     <>
@@ -46,11 +44,11 @@ const PostItem = ({ postPreview }: PostItemProps) => {
           ></p>
         </div>
         <div className={"p-[10px]"}>
-          <PostItemOwner user={owner} />
+          <PostItemOwner user={post.owner} />
         </div>
       </div>
     </>
   );
 };
 
-export default PostItem;
+export default PostItemForAll;

@@ -1,16 +1,16 @@
 import ImageAttachmentType from "../attachment/AttachmentTypes.ts";
 
 export type AuthLoginResponseType = {
-    token: string;
-    type: string;
-    user: AuthUserPreviewType;
-}
+  token: string;
+  type: string;
+  user: AuthUserPreviewType;
+};
 
 type AuthUserPreviewType = {
-    id: number;
-    firstname: string;
-    username: string;
-    image: ImageAttachmentType;
-}
+  id: number;
+  firstname: string;
+  username: string;
+  image: ImageAttachmentType;
+};
 
-export type {AuthUserPreviewType};
+export type { AuthUserPreviewType };
