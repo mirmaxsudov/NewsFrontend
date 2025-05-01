@@ -1,17 +1,23 @@
 import GenerateBreadCrumbs from "../../../helpers/GenerateBreadCrumbs.tsx";
-import {FormEvent, useEffect, useRef, useState} from "react";
-import Editor, {EditorRef} from "../../editor/Editor.tsx";
+import {FormEvent, useEffect, useState} from "react";
 import NewsInput from "../../../@core/components/input/NewsInput.tsx";
 import {InputEnum} from "../../../enums/inputEnum.ts";
 import FileUpload from "../../../@core/components/input/FileUpload.tsx";
 import {v4 as uuid} from "uuid";
 import NewsButton from "../../../@core/components/btns/NewsButton.tsx";
-import {fetchUserDetails, updateUser} from "../../../api/requests/user/user.api.ts";
+import {
+    deleteBanner, deleteProfileImage,
+    fetchUserDetails,
+    updateBanner,
+    updateProfileImage,
+    updateUser
+} from "../../../api/requests/user/user.api.ts";
 import {useAppDispatch, useAppSelector} from "../../../hooks/hooks.ts";
 import ProfileEditLoadingPage from "./ProfileEditLoadingPage.tsx";
 import {toast} from "react-toastify";
 import {changeUser, setValues} from "../../../store/auth/authSlice.ts";
 import UserEditor from "./UserEditor.tsx";
+import {uploadFile} from "../../../api/requests/file/file.api.ts";
 
 type Breadcrumb = {
     value: string;
@@ -42,6 +48,7 @@ const breadCrumbVales: Breadcrumb[] = [
 type AttachmentResponse = {
     id: number;
     url: string;
+    downloadUrl: string;
 }
 
 type User = {
@@ -51,7 +58,7 @@ type User = {
     firstname: string;
     lastname: string;
     explanation: string;
-    banner: AttachmentResponse;
+    bannerImage: AttachmentResponse;
     profileImage: AttachmentResponse;
 }
 
@@ -62,8 +69,8 @@ const ProfileEdit = () => {
     const [oldPassword, setOldPassword] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [email, setEmail] = useState<string>("");
-    const [banner, setBanner] = useState();
-    const [profileImage, setProfileImage] = useState();
+    const [banner, setBanner] = useState<File[]>([]);
+    const [profileImage, setProfileImage] = useState<File[]>([]);
     const [user, setUser] = useState<User>({} as User);
     const [loading, setLoading] = useState<boolean>(true);
     const dispatch = useAppDispatch();
@@ -74,13 +81,51 @@ const ProfileEdit = () => {
             fetchData();
     }, [loading]);
 
+    useEffect(() => {
+        if (banner.length <= 0)
+            return;
+
+        const uploadBannerImage = async () => {
+            const bannerId = await uploadFile(banner[0]);
+            const response = await updateBanner(bannerId)
+
+            if (response)
+                toast("Successfully updated", {type: "success"})
+
+            setBanner([]);
+            setLoading(true);
+        }
+        uploadBannerImage();
+    }, [banner]);
+
+    useEffect(() => {
+        if (profileImage.length <= 0)
+            return;
+
+        const uploadImage = async () => {
+            const profileImageId = await uploadFile(profileImage[0]);
+            const response = await updateProfileImage(profileImageId)
+
+            if (response)
+                toast("Successfully updated", {type: "success"})
+
+            setProfileImage([]);
+            setLoading(true);
+        }
+
+        uploadImage();
+    }, [profileImage]);
+
     const fetchData = async () => {
         try {
             const response = await fetchUserDetails(auth.user.id);
             const data = response.data;
 
             setUser(data)
-            setEditorData(user.explanation);
+            setEmail(data.email);
+            setFirstName(data.firstname);
+            setLastName(data.lastname);
+            setUsername(data.username);
             dispatch(changeUser(data))
 
             console.log(data)
@@ -113,6 +158,30 @@ const ProfileEdit = () => {
         }
     }
 
+    const handleDeleteBanner = async () => {
+        try {
+            const response = await deleteBanner();
+            if (response)
+                toast("Successfully updated", {type: "success"})
+            setLoading(true);
+        } catch (error) {
+            console.log(error)
+            toast("Something went wrong", {type: "error"})
+        }
+    }
+
+    const handleDeleteProfileImage = async () => {
+        try {
+            const response = await deleteProfileImage();
+            if (response)
+                toast("Successfully updated", {type: "success"})
+            setLoading(true);
+        } catch (error) {
+            console.log(error);
+            toast("Something went wrong", {type: "error"})
+        }
+    }
+
     if (loading)
         return (<ProfileEditLoadingPage/>)
 
@@ -137,8 +206,19 @@ const ProfileEdit = () => {
                             add banner
                     </span>
                     {
-                        user.banner ? <>
-                                <img src={user.banner.url} alt={user.firstname}/>
+                        user.bannerImage ? <>
+                                <div
+                                    className={"w-full h-[250px] relative transition-all duration-300"}
+                                >
+                                    <img
+                                        className={"object-cover w-full h-full rounded-[12px]"}
+                                        src={user.bannerImage.url} alt={user.firstname}/>
+                                </div>
+                                <button
+                                    onClick={handleDeleteBanner}
+                                    className={"text-[#fff] py-1 px-3 rounded-[5px] mt-[5px] text-[16px] inline-block capitalize font-medium bg-[#F81539BF]"}>
+                                    Delete
+                                </button>
                             </> :
                             <FileUpload key={uuid()} onFileChange={setBanner}/>
                     }
@@ -149,13 +229,28 @@ const ProfileEdit = () => {
                             explanation
                         </span>
                         <UserEditor cnt={user.explanation}/>
-                        {/*<Editor ref={editorRef} onChange={setEditorData} value={editorData}/>*/}
                     </div>
                     <div className={"col-span-3"}>
-                        <span className={"text-[#3E3232] mb-[5px] text-[16px] inline-block capitalize font-medium"}>
+                        <div>
+                            <span className={"text-[#3E3232] mb-[5px] text-[16px] inline-block capitalize font-medium"}>
                             add image
                         </span>
-                        <FileUpload key={uuid()} onFileChange={setProfileImage}/>
+                            {
+                                user.profileImage ? <>
+                                    <div className={"w-full h-[300px] mt-[10px]"}>
+                                        <img className={"size-full object-cover rounded-[12px]"}
+                                             src={user.profileImage.url} alt={user.firstname}/>
+                                        <button
+                                            onClick={handleDeleteProfileImage}
+                                            className={"text-[#fff] py-1 px-3 rounded-[5px] mt-[5px] text-[16px] inline-block capitalize font-medium bg-[#F81539BF]"}>
+                                            Delete
+                                        </button>
+                                    </div>
+                                </> : <>
+                                    <FileUpload key={uuid()} onFileChange={setProfileImage}/>
+                                </>
+                            }
+                        </div>
                     </div>
                 </div>
                 <div className={"flex justify-end mt-[44px]"}>

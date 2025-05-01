@@ -12,4 +12,34 @@ const updateUser = async (data: Partial<UserUpdateType> | UserUpdateType): Promi
     return await $api.put(`${BASE_USER_URL}/update`, data);
 }
 
-export {fetchUserDetails, updateUser};
+const updateExplanation = async (explanation: string): Promise<ApiResponse<void>> => {
+    return await $api.patch(`${BASE_USER_URL}/update-explanation`, null, {
+        params: {explanation}
+    })
+}
+
+const updateProfileImage = async (imageId: number): Promise<ApiResponse<void>> => {
+    return await $api.patch(`${BASE_USER_URL}/update-profile-image/` + imageId)
+}
+
+const updateBanner = async (imageId: number): Promise<ApiResponse<void>> => {
+    return await $api.patch(`${BASE_USER_URL}/update-banner/` + imageId);
+}
+
+const deleteBanner = async (): Promise<ApiResponse<void>> => {
+    return await $api.delete(`${BASE_USER_URL}/delete-banner`);
+}
+
+const deleteProfileImage = async (): Promise<ApiResponse<void>> => {
+    return await $api.delete(`${BASE_USER_URL}/delete-profile-image`);
+}
+
+export {
+    fetchUserDetails,
+    updateUser,
+    updateExplanation,
+    updateProfileImage,
+    updateBanner,
+    deleteBanner,
+    deleteProfileImage
+};
