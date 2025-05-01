@@ -21,6 +21,7 @@ import ProfileMarkedSendVideos from "./components/profile/profilePosts/ProfileMa
 import PostDetail from "./pages/post/PostDetail.tsx";
 import {ToastContainer} from "react-toastify";
 import PostsByCategory from "./pages/category/PostsByCategory.tsx";
+import Basket from "./pages/basket/Basket.tsx";
 
 const Home = lazy(() => import("./pages/Home"));
 const AboutUs = lazy(() => import("./pages/about-us/AboutUs.tsx"));
@@ -66,6 +67,7 @@ const App = () => {
                                 <Route path={"/category/:category"} element={<PostsByCategory/>}/>
                                 <Route path="/about-us" element={<AboutUs/>}/>
                                 <Route path="/contact" element={<Contact/>}/>
+                                <Route path={"/basket"} element={<Basket/>}/>
                                 <Route path={"/post/:id"} element={<PostDetail/>}/>
                                 <Route path={"/profile"} element={<ProfileLayout/>}>
                                     <Route

@@ -7,10 +7,12 @@ const ProfileDropDown = () => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const auth = useAppSelector(state => state.auth);
 
+    console.log(auth.user)
+
     return (
         <div className="relative text-left flex gap-[8px]">
             <img
-                src={ProfileImage}
+                src={auth.user.profileImage ? auth.user.profileImage.url : ProfileImage}
                 alt="profile"
                 className="size-[48px] rounded-[12px]"
             />
