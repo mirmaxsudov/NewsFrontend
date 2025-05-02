@@ -5,7 +5,7 @@ const Club = () => {
     <>
       <div
         className={
-          "club rounded-[12px] py-[34px] px-[25px] h-[380px] bg-[#fff] flex justify-center items-center"
+          "club w-full rounded-[12px] py-[34px] px-[25px] h-[380px] bg-[#fff] flex justify-center items-center"
         }
       >
         <table>

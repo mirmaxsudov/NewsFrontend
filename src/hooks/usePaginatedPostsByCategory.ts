@@ -1,9 +1,10 @@
 import {useEffect, useState} from "react";
-import {SendPostPageResponseOwn} from "../types/post/PostTypes.ts";
-import {fetchSendPostsByPage} from "../api/requests/post/post.api.ts";
+import {postsByCategory} from "../api/requests/post/post.api.ts";
+import {SearchEnum} from "../enums/CategoryItemTitle.ts";
+import {SendPostPageResponseAll} from "../types/post/PostTypes.ts";
 
-export const usePaginatedPosts = (page: number, size: number) => {
-    const [postResponse, setPostResponse] = useState<SendPostPageResponseOwn | null>(null);
+export const usePaginatedPostsByCategory = (page: number, size: number, category: string, search: SearchEnum) => {
+    const [postResponse, setPostResponse] = useState<SendPostPageResponseAll>({} as SendPostPageResponseAll);
     const [isLoading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
@@ -15,7 +16,8 @@ export const usePaginatedPosts = (page: number, size: number) => {
                 setLoading(true);
                 setError(null);
 
-                const response = await fetchSendPostsByPage(page, size);
+                const response = await postsByCategory(category, page, size, search);
+
                 if (isMounted)
                     setPostResponse(response.data);
             } catch (err) {
@@ -33,7 +35,7 @@ export const usePaginatedPosts = (page: number, size: number) => {
         return () => {
             isMounted = false;
         };
-    }, [page, size]);
+    }, [page, size, search, category]);
 
     return {postResponse, isLoading, error};
 };
