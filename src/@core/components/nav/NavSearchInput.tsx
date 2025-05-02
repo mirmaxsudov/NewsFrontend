@@ -1,7 +1,7 @@
 const NavSearchInput = () => {
   return (
     <>
-      <div className="flex bg-[#F5F5F5] justify-between items-center border border-gray-200 rounded-lg px-3 py-2">
+      <div className=" flex bg-[#F5F5F5] justify-between items-center border border-gray-200 rounded-lg px-3 py-2">
         <div className="size-[30px] flex justify-center items-center">
           <svg
             width="6"

@@ -6,7 +6,7 @@ import FollowOnInstagram from "../../../pages/about-us/FollowOnInstagram.tsx";
 
 const Footer = memo(() => {
   return (
-    <footer className="footer mt-[50px]">
+    <footer className="hidden lg:block footer mt-[50px]">
       <div className="container max-w-container mx-auto">
         <div className="footer-content grid grid-cols-2 gap-[64px]">
           <div>

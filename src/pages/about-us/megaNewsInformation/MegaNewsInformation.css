@@ -16,6 +16,12 @@
   z-index: -1;
 }
 
+@media screen and (max-width: 1024px) {
+  .mega-news-information__section::before{
+    background: none;
+  }
+}
+
 .mega-news-information__section-content {
   position: relative;
   z-index: 1;

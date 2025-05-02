@@ -86,8 +86,8 @@ const MegaNewsInformation = () => {
     <>
       <section className="mega-news-information__section my-[50px]">
         <div className="container max-w-container mx-auto">
-          <div className="mega-news-information__section-content flex gap-[43px]">
-            <div className="w-[60%] pe-[52px] py-[10px]">
+          <div className="mega-news-information__section-content flex flex-col lg:flex-row gap-[43px] w-full">
+            <div className="w-full lg:w-[60%] lg:pe-[52px] py-[10px]">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2847.938806589923!2d69.22591597587532!3d41.32653217130773!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae8bb7a0ebbae3%3A0xf9e01b5d45fc68cd!2sPDP%20Academy!5e0!3m2!1sru!2s!4v1743135133752!5m2!1sru!2s"
                 width="100%"
@@ -115,7 +115,7 @@ const MegaNewsInformation = () => {
                   </li>
                 ))}
               </ul>
-              <div className="bg-[#F5F5F5] mt-[18px] flex items-center justify-center py-[10px] px-[22px] rounded-[12px] gap-[8px]">
+              <div className="hidden bg-[#F5F5F5] mt-[18px] lg:flex items-center justify-center py-[10px] px-[22px] rounded-[12px] gap-[8px]">
                 <svg
                   width="16"
                   height="20"

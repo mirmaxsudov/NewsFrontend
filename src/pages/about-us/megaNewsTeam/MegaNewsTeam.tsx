@@ -55,9 +55,11 @@ const MegaNewsTeam = () => {
           <h3 className="red-line text-[20px] font-medium text-[#3E3232] capitalize mb-[30px]">
             Mega News team
           </h3>
-          <div className="grid grid-cols-6 grid-rows-1 gap-[24px]">
+          <div className="flex justify-center flex-wrap lg:flex-nowrap gap-[24px] mb-[100px] sm:mb-0">
             {TEAM.map((team) => (
-              <MegaNewsTeamCard team={team} />
+              <div className="w-[230px]">
+                <MegaNewsTeamCard team={team} />
+              </div>
             ))}
           </div>
         </div>
