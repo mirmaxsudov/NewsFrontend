@@ -2,7 +2,7 @@ import React, {useState} from "react";
 
 type FileUploadProps = {
     onFileChange: (files: File[]) => void;
-    className?: string;
+    className?: string; 
 };
 
 const FileUpload: React.FC<FileUploadProps> = ({onFileChange, className}) => {

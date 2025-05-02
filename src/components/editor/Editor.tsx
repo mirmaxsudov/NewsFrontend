@@ -34,7 +34,7 @@ const Editor = forwardRef<EditorRef, EditorProps>(
                     onChange("");
                 }
             },
-        }));
+        })); 
 
         const handleImage = () => {
             const input = document.createElement("input");

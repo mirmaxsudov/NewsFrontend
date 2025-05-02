@@ -26,7 +26,7 @@ $api.interceptors.response.use(
             originalReq._retry = true;
 
             if (!isRefreshing) {
-                isRefreshing = true;
+                isRefreshing = true; 
                 try {
                     const {data} = await axios.post(
                         `${BASE_URL}/api/v1/auth/refresh-token`,
