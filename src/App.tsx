@@ -23,6 +23,7 @@ import {ToastContainer} from "react-toastify";
 import PostsByCategory from "./pages/category/PostsByCategory.tsx";
 import Basket from "./pages/basket/Basket.tsx";
 import Logout from "./pages/auth/Logout.tsx";
+import AuthChecker from "./components/auth/AuthChecker.tsx";
 
 const Home = lazy(() => import("./pages/Home"));
 const AboutUs = lazy(() => import("./pages/about-us/AboutUs.tsx"));
@@ -73,7 +74,7 @@ const App = () => {
                                 <Route path="/contact" element={<Contact/>}/>
                                 <Route path={"/basket"} element={<Basket/>}/>
                                 <Route path={"/post/:id"} element={<PostDetail/>}/>
-                                <Route path={"/profile"} element={<ProfileLayout/>}>
+                                <Route path={"/profile"} element={<AuthChecker><ProfileLayout/></AuthChecker>}>
                                     <Route
                                         index={true}
                                         element={<Navigate to={"marked"} replace={true}/>}
@@ -102,7 +103,7 @@ const App = () => {
                                     </Route>
                                     <Route path={"posts"} element={<ProfilePosts/>}/>
                                 </Route>
-                                <Route path={"/profile-edit"} element={<ProfileEdit/>}/>
+                                <Route path={"/profile-edit"} element={<AuthChecker><ProfileEdit/></AuthChecker>}/>
                                 <Route path="/404" element={<NotFound/>}/>
                                 <Route path={"/forbidden"} element={<h1>Forbidden</h1>}/>
                                 <Route path={"logout"} element={<Logout/>}/>
@@ -115,7 +116,7 @@ const App = () => {
                                 />
                                 <Route path={"login"} element={<Login/>}/>
                                 <Route path={"register"} element={<Register/>}/>
-                                <Route path={"forgot"} element={<ForgotPassword/>}/ >
+                                <Route path={"forgot"} element={<ForgotPassword/>}/>
                                 <Route path="*" element={<NotFound/>}/>
                             </Route>
                         </Routes>
